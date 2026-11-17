@@ -12,7 +12,6 @@
 <img src="%D0%94%D0%BE%D0%BA%D1%83%D0%BC%D0%B5%D0%BD%D1%82%D0%B0%D1%86%D1%96%D1%8F/%D0%9E%D1%84%D0%BE%D1%80%D0%BC%D0%BB%D0%B5%D0%BD%D0%BD%D1%8F/badges/badge_ble.png" alt="Зв'язок: BLE" height="32">
 <a href="https://www.arduino.cc/en/software"><img src="%D0%94%D0%BE%D0%BA%D1%83%D0%BC%D0%B5%D0%BD%D1%82%D0%B0%D1%86%D1%96%D1%8F/%D0%9E%D1%84%D0%BE%D1%80%D0%BC%D0%BB%D0%B5%D0%BD%D0%BD%D1%8F/badges/badge_ide.png" alt="IDE: Arduino" height="32"></a>
 <img src="%D0%94%D0%BE%D0%BA%D1%83%D0%BC%D0%B5%D0%BD%D1%82%D0%B0%D1%86%D1%96%D1%8F/%D0%9E%D1%84%D0%BE%D1%80%D0%BC%D0%BB%D0%B5%D0%BD%D0%BD%D1%8F/badges/badge_print.png" alt="3D-друк: STL · 3MF" height="32">
-<a href="LICENSE"><img src="%D0%94%D0%BE%D0%BA%D1%83%D0%BC%D0%B5%D0%BD%D1%82%D0%B0%D1%86%D1%96%D1%8F/%D0%9E%D1%84%D0%BE%D1%80%D0%BC%D0%BB%D0%B5%D0%BD%D0%BD%D1%8F/badges/badge_license.png" alt="Ліцензія: Apache 2.0" height="32"></a>
 </p>
 
 <p align="center">
@@ -25,7 +24,6 @@
     <a href="#машинка">Машинка</a> ·
     <a href="#пульт">Пульт</a> ·
     <a href="#як-це-працює">Як це працює</a> ·
-    <a href="#схеми-підключення">Схеми</a> ·
     <a href="#швидкий-старт">Швидкий старт</a> ·
     <a href="#3d-друк">3D-друк</a> ·
     <a href="#структура-репозиторію">Структура</a>
@@ -104,6 +102,21 @@
 </tr>
 </table>
 
+### Схема підключення
+
+Натисніть на картинку, щоб відкрити її у повному розмірі.
+
+<p align="center">
+<a href="%D0%94%D0%BE%D0%BA%D1%83%D0%BC%D0%B5%D0%BD%D1%82%D0%B0%D1%86%D1%96%D1%8F/%D0%A1%D1%85%D0%B5%D0%BC%D0%B8/SoccerBee_Car_wiring.jpg"><img src="%D0%94%D0%BE%D0%BA%D1%83%D0%BC%D0%B5%D0%BD%D1%82%D0%B0%D1%86%D1%96%D1%8F/%D0%A1%D1%85%D0%B5%D0%BC%D0%B8/SoccerBee_Car_wiring.jpg" alt="Схема підключення машинки: ESP32-C3 SuperMini і 2× L298N" width="100%"></a><br>
+<sub><b>Машинка: ESP32-C3 SuperMini + 2× L298N · прошивка V1.0</b></sub>
+</p>
+
+- Перемички ENA / ENB і 5V-EN на обох драйверах L298N зняті.
+- Резистори по 10 кОм з GPIO5 і GPIO10 на GND, щоб мотори не смикалися при старті.
+- Mini-360 виставити на 5.0 В мультиметром **до** підключення ESP.
+- GND акумулятора, обох L298N, Mini-360 і ESP — одна спільна точка.
+- Мотор крутиться не туди: поміняти його дроти на OUT або `inv l` / `inv r`.
+
 ### Розбірка машинки
 
 <p align="center">
@@ -143,14 +156,18 @@
 <sub><b>Розбірка пульта</b></sub>
 </p>
 
-### План корпусу
+### Схема підключення
 
 <p align="center">
-<img src="%D0%94%D0%BE%D0%BA%D1%83%D0%BC%D0%B5%D0%BD%D1%82%D0%B0%D1%86%D1%96%D1%8F/%D0%9F%D1%83%D0%BB%D1%8C%D1%82/tx_case_plan.png" alt="План корпусу пульта" width="100%"><br>
-<sub><b>Розкладка компонентів у корпусі · габарит 150 × 109 × 30.5 мм</b></sub>
+<a href="%D0%94%D0%BE%D0%BA%D1%83%D0%BC%D0%B5%D0%BD%D1%82%D0%B0%D1%86%D1%96%D1%8F/%D0%A1%D1%85%D0%B5%D0%BC%D0%B8/SoccerBee_TX_wiring.jpg"><img src="%D0%94%D0%BE%D0%BA%D1%83%D0%BC%D0%B5%D0%BD%D1%82%D0%B0%D1%86%D1%96%D1%8F/%D0%A1%D1%85%D0%B5%D0%BC%D0%B8/SoccerBee_TX_wiring.jpg" alt="Схема підключення пульта TX v2: ESP32-C3 SuperMini, стіки, OLED, MPU-6050" width="100%"></a><br>
+<sub><b>Пульт TX v2: ESP32-C3 SuperMini</b></sub>
 </p>
 
-Кріплення тільки **M3 і M2 (DIN 912)**: 6× M3×20 і 6 гайок M3 на корпус, 8× M3×8 на стіки KY-023, 4× M2×4 на OLED, 2× M2×8 на тримач кнопок, 2× M2×6 на MPU і 3× M2×8 на планку ESP з зарядкою.
+- Стіки, OLED і MPU-6050 живляться від **3.3 В**, а не від 5 В.
+- Заряджати й прошивати при **вимкненому** вимикачі: ESP живиться від USB, а акумулятор заряджається окремо.
+- **GPIO2 — strapping-пін**: на старті він має бути HIGH, тому «мінус» правого стіка підключений до GPIO21, а не до GND.
+- LDO 3.3 В: AP7361C-33E, LDL1117S33, AP2112K або ME6211. **AMS1117 не підходить.**
+- Бузер HC-12085 керується через NPN (S8050 / BC547) з GPIO10.
 
 ### Екран пульта
 
@@ -191,14 +208,6 @@
 
 ## Як це працює
 
-```mermaid
-%%{init: {'theme':'base','themeVariables':{'primaryColor':'#FFC20E','primaryTextColor':'#0b0b0c','primaryBorderColor':'#0b0b0c','lineColor':'#E0A800','secondaryColor':'#f4f4f0','tertiaryColor':'#f4f4f0','edgeLabelBackground':'#f4f4f0','textColor':'#0b0b0c','fontFamily':'Arial'}}}%%
-flowchart LR
-  TX["🎮 ПУЛЬТ<br/>ESP32-C3"] -->|"команди · 8 байт · 50 Гц"| CAR["🐝 МАШИНКА<br/>ESP32-C3"]
-  CAR -->|"телеметрія · 12 байт · 5 Гц"| TX
-  TX -.->|"USB-C · JSON (SBJ v1)"| PC["💻 КОМП'ЮТЕР"]
-```
-
 Пульт сам шукає машинку з іменем `SoccerBee-XXXX`, підключається й запам'ятовує її. Далі 50 разів на секунду шле короткий пакет керування, а машинка 5 разів на секунду відповідає телеметрією.
 
 | Пакет | Напрям | Розмір | Частота | Що всередині |
@@ -214,40 +223,6 @@ flowchart LR
 
 **USB-контролер (пульт V1.1).** Пульт, підключений кабелем USB-C до комп'ютера, віддає стіки, кнопки, нахил MPU-6050, батарею, зв'язок і телеметрію машинки JSON-рядками (протокол **SBJ v1**). Команди: `hello`, `stream on [Гц]`, `stream off`, `state`, `pc on|off`, `beep <Гц> <мс>`.
 
-
-<p align="center"><img src="%D0%94%D0%BE%D0%BA%D1%83%D0%BC%D0%B5%D0%BD%D1%82%D0%B0%D1%86%D1%96%D1%8F/%D0%9E%D1%84%D0%BE%D1%80%D0%BC%D0%BB%D0%B5%D0%BD%D0%BD%D1%8F/divider.png" alt="" width="100%"></p>
-
-## Схеми підключення
-
-Схеми показують, який пін до чого підключений і як влаштоване живлення. Натисніть на картинку, щоб відкрити її у повному розмірі.
-
-### Машинка
-
-<p align="center">
-<a href="%D0%94%D0%BE%D0%BA%D1%83%D0%BC%D0%B5%D0%BD%D1%82%D0%B0%D1%86%D1%96%D1%8F/%D0%A1%D1%85%D0%B5%D0%BC%D0%B8/SoccerBee_Car_wiring.jpg"><img src="%D0%94%D0%BE%D0%BA%D1%83%D0%BC%D0%B5%D0%BD%D1%82%D0%B0%D1%86%D1%96%D1%8F/%D0%A1%D1%85%D0%B5%D0%BC%D0%B8/SoccerBee_Car_wiring.jpg" alt="Схема підключення машинки: ESP32-C3 SuperMini і 2× L298N" width="100%"></a><br>
-<sub><b>Машинка: ESP32-C3 SuperMini + 2× L298N · прошивка V1.0</b></sub>
-</p>
-
-- Перемички ENA / ENB і 5V-EN на обох драйверах L298N зняті.
-- Резистори по 10 кОм з GPIO5 і GPIO10 на GND, щоб мотори не смикалися при старті.
-- Mini-360 виставити на 5.0 В мультиметром **до** підключення ESP.
-- GND акумулятора, обох L298N, Mini-360 і ESP — одна спільна точка.
-- Мотор крутиться не туди: поміняти його дроти на OUT або `inv l` / `inv r`.
-
-### Пульт
-
-<p align="center">
-<a href="%D0%94%D0%BE%D0%BA%D1%83%D0%BC%D0%B5%D0%BD%D1%82%D0%B0%D1%86%D1%96%D1%8F/%D0%A1%D1%85%D0%B5%D0%BC%D0%B8/SoccerBee_TX_wiring.jpg"><img src="%D0%94%D0%BE%D0%BA%D1%83%D0%BC%D0%B5%D0%BD%D1%82%D0%B0%D1%86%D1%96%D1%8F/%D0%A1%D1%85%D0%B5%D0%BC%D0%B8/SoccerBee_TX_wiring.jpg" alt="Схема підключення пульта TX v2: ESP32-C3 SuperMini, стіки, OLED, MPU-6050" width="100%"></a><br>
-<sub><b>Пульт TX v2: ESP32-C3 SuperMini</b></sub>
-</p>
-
-- Стіки, OLED і MPU-6050 живляться від **3.3 В**, а не від 5 В.
-- Заряджати й прошивати при **вимкненому** вимикачі: ESP живиться від USB, а акумулятор заряджається окремо.
-- **GPIO2 — strapping-пін**: на старті він має бути HIGH, тому «мінус» правого стіка підключений до GPIO21, а не до GND.
-- LDO 3.3 В: AP7361C-33E, LDL1117S33, AP2112K або ME6211. **AMS1117 не підходить.**
-- Бузер HC-12085 керується через NPN (S8050 / BC547) з GPIO10.
-
-<p align="center"><img src="%D0%94%D0%BE%D0%BA%D1%83%D0%BC%D0%B5%D0%BD%D1%82%D0%B0%D1%86%D1%96%D1%8F/%D0%9E%D1%84%D0%BE%D1%80%D0%BC%D0%BB%D0%B5%D0%BD%D0%BD%D1%8F/divider.png" alt="" width="100%"></p>
 
 ## Швидкий старт
 
@@ -286,6 +261,39 @@ flowchart LR
 | Корпус пульта | верхня кришка, нижня частина, тримач кнопок, тримач кнопки B | `Друк_3D/Пульт/` |
 | CAD | `Main part Car.step`, `Main part TX.step` | `CAD/` |
 
+**Кріплення пульта** — тільки **M3 і M2 (DIN 912)**: 6× M3×20 і 6 гайок M3 на корпус, 8× M3×8 на стіки KY-023, 4× M2×4 на OLED, 2× M2×8 на тримач кнопок, 2× M2×6 на MPU і 3× M2×8 на планку ESP з зарядкою. Габарит корпусу пульта — 150 × 109 × 30.5 мм.
+
+### Як виглядають деталі
+
+Рендери зроблені прямо з STL-файлів у цьому репозиторії.
+
+<p align="center">
+<img src="%D0%94%D0%BE%D0%BA%D1%83%D0%BC%D0%B5%D0%BD%D1%82%D0%B0%D1%86%D1%96%D1%8F/STL_%D1%80%D0%B5%D0%BD%D0%B4%D0%B5%D1%80%D0%B8/Car_assembled_front.png" alt="Машинка зібрана з STL: вигляд спереду" width="100%"><br>
+<sub><b>Машинка, зібрана з STL · спереду</b></sub>
+</p>
+
+<p align="center">
+<img src="%D0%94%D0%BE%D0%BA%D1%83%D0%BC%D0%B5%D0%BD%D1%82%D0%B0%D1%86%D1%96%D1%8F/STL_%D1%80%D0%B5%D0%BD%D0%B4%D0%B5%D1%80%D0%B8/Car_assembled_back.png" alt="Машинка зібрана з STL: вигляд ззаду" width="100%"><br>
+<sub><b>Машинка, зібрана з STL · ззаду</b></sub>
+</p>
+
+<p align="center">
+<img src="%D0%94%D0%BE%D0%BA%D1%83%D0%BC%D0%B5%D0%BD%D1%82%D0%B0%D1%86%D1%96%D1%8F/STL_%D1%80%D0%B5%D0%BD%D0%B4%D0%B5%D1%80%D0%B8/Car_black_parts.png" alt="Чорні деталі машинки (STL)" width="100%"><br>
+<sub><b>Чорні деталі машинки · 5 STL</b></sub>
+</p>
+
+<p align="center">
+<img src="%D0%94%D0%BE%D0%BA%D1%83%D0%BC%D0%B5%D0%BD%D1%82%D0%B0%D1%86%D1%96%D1%8F/STL_%D1%80%D0%B5%D0%BD%D0%B4%D0%B5%D1%80%D0%B8/Car_yellow_parts.png" alt="Жовті деталі машинки (STL)" width="100%"><br>
+<sub><b>Жовті деталі машинки · 15 STL</b></sub>
+</p>
+
+<p align="center">
+<img src="%D0%94%D0%BE%D0%BA%D1%83%D0%BC%D0%B5%D0%BD%D1%82%D0%B0%D1%86%D1%96%D1%8F/STL_%D1%80%D0%B5%D0%BD%D0%B4%D0%B5%D1%80%D0%B8/TX_parts.png" alt="Деталі корпусу пульта (STL)" width="100%"><br>
+<sub><b>Корпус пульта · 4 STL</b></sub>
+</p>
+
+У 3MF «Друк всього» очі й брови лежать парами (дзеркальні ліва й права), а `Кнопка B тримач` у проєкті пульта — у двох екземплярах.
+
 <p align="center"><img src="%D0%94%D0%BE%D0%BA%D1%83%D0%BC%D0%B5%D0%BD%D1%82%D0%B0%D1%86%D1%96%D1%8F/%D0%9E%D1%84%D0%BE%D1%80%D0%BC%D0%BB%D0%B5%D0%BD%D0%BD%D1%8F/divider.png" alt="" width="100%"></p>
 
 ## Структура репозиторію
@@ -296,9 +304,10 @@ Soccer-Bee/
 ├── Документація/
 │   ├── Анімації/                  GIF розбірки машинки й пульта
 │   ├── Оформлення/                заголовок, бейджі й розділювач для README
-│   ├── Пульт/                     фото, план корпусу, екрани пульта
+│   ├── Пульт/                     фото й екрани пульта
 │   ├── Рендери_і_скріншоти/       рендери та фото машинки
-│   └── Схеми/                     схеми підключення машинки й пульта
+│   ├── Схеми/                     схеми підключення машинки й пульта
+│   └── STL_рендери/               рендери деталей із STL
 ├── Друк_3D/
 │   ├── Машинка/
 │   │   ├── Жовті_деталі/          STL декору + «Друк всього» (3MF)
@@ -315,5 +324,5 @@ Soccer-Bee/
 
 <p align="center">
   <sub>Розроблено by <a href="https://github.com/Stanislav-developer">Stanislav developer</a> разом з C.C.C.</sub><br>
-  <sub>Soccer Bee · Robot for Robofootball · ліцензія <a href="LICENSE">Apache 2.0</a></sub>
+  <sub>Soccer Bee · Robot for Robofootball · <a href="LICENSE">Apache-2.0</a></sub>
 </p>
